@@ -1,3 +1,7 @@
 *build/
 *.out
 .vscode
+__pycache__
+Task\ MPI/arr.py
+Task\ MPI/*example.pdf
+Task\ MPI/res.pdf
