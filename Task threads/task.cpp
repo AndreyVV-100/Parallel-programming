@@ -158,6 +158,7 @@ private:
                             local_stack.pop();
                         }
                         empty_stack = false;
+                        cond_var_.notify_all();
                     }
                 }
                 else
