@@ -3,6 +3,7 @@
 #include <iostream>
 #include <cstring>
 #include <chrono>
+#include <fstream>
 
 #define NUM_THREADS 4
 
@@ -77,7 +78,7 @@ double diff (std::vector<double>& y1, std::vector<double>& y2)
 	for (int i = 0; i < n; ++i)
 		res += std::abs(y1[i] - y2[i]);
 
-	return res;
+	return res / n;
 }
 
 int main(int argc, char* argv[])
@@ -92,9 +93,10 @@ int main(int argc, char* argv[])
 		x[i] = i * h;
 
 	std::vector<double> y_prev(n), y_cur(n), f(n);
+    std::fstream file("res.py", std::ios_base::out);
 
 	double param = PARAM_START;
-	for (int rightBoundNum = 0; rightBoundNum < PARAM_NUM; rightBoundNum++, param += PARAM_STEP)
+	for (int counter = 0; counter < PARAM_NUM; counter++, param += PARAM_STEP)
 	{
 		// start approximation: y = 1 + (b - 2) * x + x^2
 		for (int i = 0; i < n; ++i)
@@ -117,10 +119,11 @@ int main(int argc, char* argv[])
 		auto time_end = std::chrono::high_resolution_clock::now();
         std::cout << std::chrono::duration_cast<std::chrono::microseconds>(time_end - time_start).count() << "\n";
 
-		std::cout << param << " ";
+		file << "param" << counter << " = [";
 		for (int i = 0; i < n; ++i)
-			std::cout << y_prev[i] << " ";
+			file << y_prev[i] << ", ";
 
-		std::cout << "\n";
+		file << "0]\n";
 	}
+    file.close();
 }
