@@ -6,8 +6,8 @@
 #include <iostream>
 #include <fstream>
 
-#define ISIZE 1000
-#define JSIZE 1000
+#define ISIZE 10000
+#define JSIZE 10000
 
 double a[ISIZE][JSIZE],
        b[ISIZE][JSIZE];
@@ -117,5 +117,6 @@ int main (int argc, char **argv)
     std::cout << std::chrono::duration_cast<std::chrono::microseconds>(time_end - time_start).count() << "\n";
 
     //окончание измерения времени
+    MPI_Barrier(MPI_COMM_WORLD);
     Print (part);
 }

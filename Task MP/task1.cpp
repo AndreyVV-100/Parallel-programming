@@ -6,8 +6,8 @@
 #include <iostream>
 #include <fstream>
 
-#define ISIZE 1000
-#define JSIZE 1000
+#define ISIZE 10000
+#define JSIZE 10000
 
 double a[ISIZE][JSIZE];
 
@@ -152,8 +152,8 @@ int main(int argc, char **argv)
     else
         SendToMainThread(part);
     #endif
-    if (rank == 0)
-        Print();
+    // if (rank == 0)
+    //     Print();
     //окончание измерения времени
     // Print (part);
 
